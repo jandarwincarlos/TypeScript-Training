@@ -1,4 +1,17 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var enums_1 = require("./enums");
 var classes_1 = require("./classes");
@@ -105,15 +118,48 @@ var hermansBooks = GetTitles('Herman Melville');
 function PrintBook(book) {
     console.log(book.title + ' by ' + book.author);
 }
-var myBook = {
-    id: 5,
-    title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    available: true,
-    category: enums_1.Category.Fiction,
-    pages: 250,
-    markDamaged: function (reason) { return console.log('Damaged: ' + reason); }
-};
+// let ref: ReferenceItem = new ReferenceItem('Updated Facts and Figures', 2012);
+// // ref.title = 'Facts and Figures';
+// // ref.year = '2016';
+// ref.printItem();
+// ref.publisher = 'Random Data Publishing';
+// console.log(ref.publisher);
+// let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
+// refBook.printCitation();
+var Newspaper = /** @class */ (function (_super) {
+    __extends(class_1, _super);
+    function class_1() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    class_1.prototype.printCitation = function () {
+        console.log("Newspaper: " + this.title);
+    };
+    return class_1;
+}(classes_1.ReferenceItem));
+var myPaper = new Newspaper('The Gazette', 2016);
+myPaper.printCitation();
+var Novel = /** @class */ (function (_super) {
+    __extends(Novel, _super);
+    function Novel() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Novel;
+}(/** @class */ (function () {
+    function class_2() {
+    }
+    return class_2;
+}())));
+var favoriteNovel = new Novel();
+// favoriteNovel.
+// let myBook: Book = {
+//     id: 5,
+//     title: 'Pride and Prejudice',
+//     author: 'Jane Austen',
+//     available: true,
+//     category: Category.Fiction,
+//     pages: 250,
+//     markDamaged: (reason: string) => console.log('Damaged: ' + reason)
+// }
 // PrintBook(myBook);
 // myBook.markDamaged!('torn pages');
 // let logDamage: DamageLogger;
@@ -121,9 +167,9 @@ var myBook = {
 // logDamage('coffee stains');
 // let favoriteAuthor: Author = {}
 // let favoriteLibrarian: Librarian = {}
-var favoriteLibrarian = new classes_1.UniversityLibrarian();
-favoriteLibrarian.name = 'Sharon';
-favoriteLibrarian.assistCustomer('Lynda');
+// let favoriteLibrarian: Librarian = new UniversityLibrarian();
+// favoriteLibrarian.name = 'Sharon';
+// favoriteLibrarian.assistCustomer('Lynda');
 // let myBooks: string[] = CheckoutBooks('Throne', 1, 3, 4);
 // myBooks.forEach(title => console.log(title));
 // LogFirstAvailable();

@@ -1,6 +1,6 @@
 import { Category } from './enums';
 import { Book, DamageLogger, Author, Librarian } from './interfaces';
-import { UniversityLibrarian } from './classes';
+import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './classes';
 
 function GetAllBooks(): Book[] {
     let books = [
@@ -125,15 +125,42 @@ function PrintBook(book: Book): void {
     console.log(book.title + ' by ' + book.author);
 }
 
-let myBook: Book = {
-    id: 5,
-    title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    available: true,
-    category: Category.Fiction,
-    pages: 250,
-    markDamaged: (reason: string) => console.log('Damaged: ' + reason)
+// let ref: ReferenceItem = new ReferenceItem('Updated Facts and Figures', 2012);
+// // ref.title = 'Facts and Figures';
+// // ref.year = '2016';
+// ref.printItem();
+// ref.publisher = 'Random Data Publishing';
+// console.log(ref.publisher);
+
+// let refBook: ReferenceItem = new Encyclopedia('WorldPedia', 1900, 10);
+// refBook.printCitation();
+
+let Newspaper = class extends ReferenceItem {
+    printCitation(): void {
+        console.log(`Newspaper: ${this.title}`);
+    }
 }
+
+let myPaper = new Newspaper('The Gazette', 2016);
+myPaper.printCitation();
+
+class Novel extends class { title!: string } {
+    mainCharacter!: string;
+}
+
+let favoriteNovel = new Novel();
+// favoriteNovel.
+
+
+// let myBook: Book = {
+//     id: 5,
+//     title: 'Pride and Prejudice',
+//     author: 'Jane Austen',
+//     available: true,
+//     category: Category.Fiction,
+//     pages: 250,
+//     markDamaged: (reason: string) => console.log('Damaged: ' + reason)
+// }
 
 // PrintBook(myBook);
 // myBook.markDamaged!('torn pages');
@@ -145,9 +172,9 @@ let myBook: Book = {
 // let favoriteAuthor: Author = {}
 // let favoriteLibrarian: Librarian = {}
 
-let favoriteLibrarian: Librarian = new UniversityLibrarian();
-favoriteLibrarian.name = 'Sharon';
-favoriteLibrarian.assistCustomer('Lynda');
+// let favoriteLibrarian: Librarian = new UniversityLibrarian();
+// favoriteLibrarian.name = 'Sharon';
+// favoriteLibrarian.assistCustomer('Lynda');
 
 
 
