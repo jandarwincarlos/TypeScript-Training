@@ -1,4 +1,8 @@
-function GetAllBooks() {
+import { Category } from './enums';
+import { Book, DamageLogger, Author, Librarian } from './interfaces';
+import { UniversityLibrarian } from './classes';
+
+function GetAllBooks(): Book[] {
     let books = [
         { id: 1, title: 'Ulysses', author: 'James Joyce', available: true, category: Category.Fiction },
         { id: 2, title: 'A Farewell to Arms', author: 'Ernest Hemingway', available: false, category: Category.Fiction},
@@ -26,8 +30,6 @@ function LogFirstAvailable(books = GetAllBooks()): void {
 	console.log('First Available: ' + firstAvailable);
 }
 
-enum Category { Biography, Poetry, Fiction, History, Children }
-
 function GetBookTitleByCategory(categoryFilter: Category = Category.Fiction): Array<string> {
     
     console.log('Getting books in category: ' + Category[categoryFilter]);
@@ -51,7 +53,7 @@ function LogBookTitles(titles: string[]): void {
     }
 }
 
-function GetBookByID(id: number) {
+function GetBookByID(id: number): Book {
     const allBooks = GetAllBooks();
     return allBooks.filter(book => book.id === id)[0];    
 }
@@ -117,7 +119,36 @@ function GetTitles(bookProperty: any): string[] {
 //****************************************************************
 
 let hermansBooks = GetTitles('Herman Melville');
-hermansBooks.forEach(title => console.log(title));
+// hermansBooks.forEach(title => console.log(title));
+
+function PrintBook(book: Book): void {
+    console.log(book.title + ' by ' + book.author);
+}
+
+let myBook: Book = {
+    id: 5,
+    title: 'Pride and Prejudice',
+    author: 'Jane Austen',
+    available: true,
+    category: Category.Fiction,
+    pages: 250,
+    markDamaged: (reason: string) => console.log('Damaged: ' + reason)
+}
+
+// PrintBook(myBook);
+// myBook.markDamaged!('torn pages');
+
+// let logDamage: DamageLogger;
+// logDamage = (damage: string) => console.log('Damage reported: ' + damage)
+// logDamage('coffee stains');
+
+// let favoriteAuthor: Author = {}
+// let favoriteLibrarian: Librarian = {}
+
+let favoriteLibrarian: Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Sharon';
+favoriteLibrarian.assistCustomer('Lynda');
+
 
 
 
